@@ -1,0 +1,30 @@
+{
+  "inputs": [],
+  "servers": {
+    "tool-echo-ping": {
+      "env": {
+        "OTEL_SERVICE_NAME": "tool-echo-ping",
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://aspire-dashboard:18889",
+        "OTEL_EXPORTER_OTLP_HEADERS": "x-otlp-header=header-value"
+      },
+      "type": "sse",
+      "url": "http://localhost:5007/sse"
+    },
+    "tool-research-planning": {
+      "type": "sse",
+      "url": "http://localhost:5003/sse"
+    },
+    "tool-topic-recommendation": {
+      "type": "sse",
+      "url": "http://localhost:5002/sse"
+    },
+    "tool-customer-query": {
+      "env": {
+        "OTEL_SERVICE_NAME": "tool-customer-query",
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://aspire-dashboard:18889"
+      },
+      "type": "sse",
+      "url": "http://localhost:5001/sse"
+    }
+  }
+}

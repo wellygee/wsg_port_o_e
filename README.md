@@ -29,8 +29,8 @@ The architecture of the KT Sales Agents application is designed to be modular an
 - The Agent Workflow Service orchestrates the interaction between the agents and MCP clients, allowing them to work together seamlessly.
 - An Aspire Dashboard is used to monitor the application.
 
-![High-Level Architecture](101s/proj/01/tales-tech-ai-agents-fw-demo/docs/ai-sales-agent-system-diagram.svg)
+![High-Level Architecture](101s/proj/01/tales-tech-ai-agents/docs/ai-sales-agent-system-diagram.svg)
 
 ## Project Structure
 
-[Visit proj for more detail..](101s/proj/01/tales-tech-ai-agents-fw-demo/README.md)
+[Visit proj for more detail..](101s/proj/01/tales-tech-ai-agents/README.md)
