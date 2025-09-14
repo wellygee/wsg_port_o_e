@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "KTSalesAgent.CustomerQueryServer": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:55176;http://localhost:55177"
+    }
+  }
+}

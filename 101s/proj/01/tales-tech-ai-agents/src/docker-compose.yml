@@ -1,0 +1,82 @@
+name: kt-sales-agents
+services:
+  tool-customer-query:
+    container_name: tool-customer-query
+    build: ./tools/customer-query
+    ports:
+      - "5001:8080"
+    networks:
+      - ai-network
+    environment:
+      - OTEL_SERVICE_NAME=tool-customer-query
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://aspire-dashboard:18889
+
+  tool-topic-recommendation:
+    container_name: tool-topic-recommendation
+    build: ./tools/topic-recommendation
+    ports:
+      - "5002:8080"
+    networks:
+      - ai-network
+
+  tool-research-planning:
+    container_name: tool-research-planning
+    build: ./tools/research-planning
+    ports:
+      - "5003:8000"
+    networks:
+      - ai-network
+      
+  tool-echo-ping:
+    container_name: tool-echo-ping
+    build: ./tools/echo-ping
+    ports:
+      - "5007:5000"
+    networks:
+      - ai-network
+    environment:
+      - OTEL_SERVICE_NAME=tool-echo-ping
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://aspire-dashboard:18889
+      - OTEL_EXPORTER_OTLP_HEADERS=x-otlp-header=header-value
+
+  web-api:
+    container_name: web-api
+    build: ./api
+    ports:
+      - "4000:4000"
+    depends_on:
+      - tool-customer-query
+      - tool-topic-recommendation
+      - tool-research-planning
+      - tool-echo-ping
+    networks:
+      - ai-network
+    env_file: 
+      - "./api/.env.dev"
+      - "./api/.env.docker" # override .env with .env.docker
+
+  web-ui:
+    container_name: web-ui
+    build: ./ui
+    ports:
+      - "8000:8000"
+      - "4201:4200"
+    depends_on:
+      - web-api
+    networks:
+      - ai-network
+
+  aspire-dashboard:
+    container_name: aspire-dashboard
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.1
+    ports:
+      - 18888:18888
+      - 4317:18889
+    networks:
+      - ai-network
+    environment:
+      - DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS=true
+
+networks:
+  ai-network:
+    driver: bridge
