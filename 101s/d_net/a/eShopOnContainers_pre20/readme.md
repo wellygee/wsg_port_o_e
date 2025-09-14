@@ -1,0 +1,2 @@
+- https://www.neolisk.blog/posts/2021-06-05-dotnet-arch-eshop-on-cont/
+- https://medium.com/@iamprovidence/everything-wrong-with-eshoponcontainers-ce9319a7a601
