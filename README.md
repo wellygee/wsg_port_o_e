@@ -1,9 +1,4 @@
-# WSG 101s
-The walker...
-
-__-3-__
-
-# Find the new kid
+# ... 101s
 
 #### The KT Sales Agents
 
@@ -33,4 +28,4 @@ The architecture of the KT Sales Agents application is designed to be modular an
 
 ## Project Structure
 
-[Visit proj for more detail..](101s/proj/01/tales-tech-ai-agents/README.md)
+[Visit project home for more detail..](101s/proj/01/tales-tech-ai-agents/README.md)
