@@ -11,9 +11,6 @@
 
 # environment_name = "development"
 
-# WG Keys - cloudcasts profile
-# aws_access_key_id="AKIA3Q54ZRTUJHS5YTC5"
-# aws_secret_access_key="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"
 
 aws_profile = "xxxxxxxxxxxxxxx"
 aws_region = "eu-west-1"
