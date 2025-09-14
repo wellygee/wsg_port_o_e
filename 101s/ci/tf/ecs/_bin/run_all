@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ]; then
+    >&2 echo "Usage: ./run_infra <env> <command>
+
+  e.g. ./run_all qa plan
+"
+    exit 1
+fi
+
+ENV=$1 # dev, qa, production, etc
+
+# Create
+# ./1_run_infra_shared $ENV $2
+# ./2_run_ec2 $ENV $2
+./7_run_ecs $ENV $2
+
+# Destroy
+# ./2_run_ec2 $ENV $2
+# ./1_run_infra_shared $ENV $2

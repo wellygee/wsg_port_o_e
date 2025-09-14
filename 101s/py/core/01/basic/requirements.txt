@@ -1,0 +1,5 @@
+pytest
+argparse
+
+requests
+aiohttp

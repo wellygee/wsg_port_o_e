@@ -1,0 +1,13 @@
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\bin\Debug\netcoreapp2.0\dotnetapp.deps.json
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\bin\Debug\netcoreapp2.0\dotnetapp.runtimeconfig.json
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\bin\Debug\netcoreapp2.0\dotnetapp.runtimeconfig.dev.json
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\bin\Debug\netcoreapp2.0\dotnetapp.dll
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\bin\Debug\netcoreapp2.0\dotnetapp.pdb
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.csproj.AssemblyReference.cache
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.GeneratedMSBuildEditorConfig.editorconfig
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.AssemblyInfoInputs.cache
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.AssemblyInfo.cs
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.csproj.CoreCompileInputs.cache
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.dll
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.pdb
+C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\obj\Debug\netcoreapp2.0\dotnetapp.genruntimeconfig.cache

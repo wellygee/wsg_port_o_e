@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ]; then
+    >&2 echo "Usage: ./run <env> <relative_state_path> <command>
+
+  e.g. ./run qa 2_infra_ec2/b.ec2 plan
+"
+    exit 1
+fi
+
+ENV=$1
+TF_ENV=$ENV # $1 # dev, qa, production, etc
+
+TF_STATE_PATH=$2 # ec2, s3, etc
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+echo "Running terraform in $DIR/$TF_STATE_PATH/$TF_ENV"
+
+# script location
+cd $DIR
+
+if [ $# -gt 0 ]; then
+
+    if [ ! -d "$TF_STATE_PATH" ]; then
+        >&2 echo "Directory $DIR/$TF_STATE_PATH", does not exist
+        exit 1
+    fi
+
+    if [ "$3" == "init" ]; then
+        terraform -chdir=./$TF_STATE_PATH init
+
+    elif [[ "$3" == "apply" || "$3" == "destroy" ]]; then
+        terraform -chdir=./$TF_STATE_PATH $3 --auto-approve -var-file=$DIR/_env/$ENV/variables.tfvars
+
+    elif [ "$3" == "plan" ]; then
+        terraform -chdir=./$TF_STATE_PATH $3 -var-file=$DIR/_env/$ENV/variables.tfvars
+
+    fi
+
+    terraform -chdir=./$TF_STATE_PATH fmt # -check
+fi
+# back to original location
+cd -

@@ -1,0 +1,85 @@
+services:
+  db:
+    container_name: db
+    hostname: db
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    volumes:
+      - pgdata:/data/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    ports:
+      - "5436:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_SERVER=localhost
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=db_course
+      - SECRET_KEY=SOMESUPERSECRET
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+    networks:
+      app1_net:
+        ipv4_address: 192.168.10.2
+  api:
+    container_name: api
+    hostname: api
+    env_file:
+      - .env
+    environment:
+      # - POSTGRES_CONTAINER_PORT=5436
+      # - POSTGRES_TEST_CONTAINER_PORT=6543
+      # - POSTGRES_SERVER=db
+      # - POSTGRES_PORT=5432
+      # - POSTGRES_DB=testdb
+      # - POSTGRES_USER=postgres
+      # - POSTGRES_PASSWORD_SECRET_KEY=PG_EVENTS_DB_PWD
+      - APP_TITLE=Test Api
+      - APP_VERSION=v0.0.1
+      - APP_DESCRIPTION=Test Api
+      - APP_ENV=dev
+      - DEBUG_MODE_ON=True
+      - C_ENV=dev
+    # image: "todo:use_dockerfile"
+    build:
+      context: ./ # backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /backend
+    ports:
+      - "8000:8000"
+    command: bash -c "uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000 --log-level debug"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8000/health || exit 1"]
+      interval: 120s
+      timeout: 120s
+      retries: 5
+      start_period: 20s
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      app1_net:
+        ipv4_address: 192.168.10.3
+
+volumes:
+  pgdata:
+  api_data:
+
+networks:
+  app1_net:
+    ipam:
+      driver: default 
+      config:
+      - subnet: "192.168.10.0/24"  #ipv4
+        gateway: 192.168.10.1

@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = dotnetapp
+build_property.ProjectDir = C:\TnF\temp_tests\ecs\01_dotnet_core_ecs_demo\dotnet-core-ecs-demo-master\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

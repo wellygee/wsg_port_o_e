@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+aws ecr login-password...
+
+IMAGE_NAME="todo"
+docker build -t ${IMAGE_NAME} .
+
+docker tag ...
+docker push ...
