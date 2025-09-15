@@ -14,7 +14,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_SERVER=localhost
       - POSTGRES_PORT=5432
-      - POSTGRES_DB=db_course
+      - POSTGRES_DB=xxxxxxxxxx
       - SECRET_KEY=SOMESUPERSECRET
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
