@@ -1,0 +1,67 @@
+services:
+  db:
+    container_name: db
+    hostname: db
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    volumes:
+      - pgdata:/data/postgresql/data
+      # - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - SECRET_KEY=SOMESUPERSECRET
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+    networks:
+      app1_net:
+        ipv4_address: 192.168.20.2
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /005
+    ports:
+      - "8000:8000"
+    # command: bash -c "uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000 --log-level debug"
+    command: >
+      bash -c "
+        alembic upgrade head &&
+        uvicorn main:app --reload --port 8000 --host 0.0.0.0 --log-level debug
+      "
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      app1_net:
+        ipv4_address: 192.168.20.3
+
+volumes:
+  pgdata:
+  api_data:
+
+networks:
+  app1_net:
+    ipam:
+      driver: default 
+      config:
+      - subnet: "192.168.20.0/24"  #ipv4
+        gateway: 192.168.20.1

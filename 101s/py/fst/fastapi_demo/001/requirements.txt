@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+
+requests
+aiohttp
+
+pytest
+httpx

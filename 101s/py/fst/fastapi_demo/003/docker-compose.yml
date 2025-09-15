@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /003
+    ports:
+      - "8000:8000"
+    command: bash -c "uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000 --log-level debug"
+    

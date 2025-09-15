@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+
+requests
+aiohttp
+
+pytest
+httpx
+
+SQLAlchemy
+psycopg2-binary
+alembic
+
+python-dotenv
+
+pydantic[email]

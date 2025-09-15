@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+
+requests
+aiohttp
+
+pytest
+httpx
+
+SQLAlchemy
+psycopg2-binary
+
+python-dotenv
